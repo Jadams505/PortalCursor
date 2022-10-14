@@ -1,0 +1,3 @@
+displayName = Portal Cursor
+author = Jadams & Jet
+version = 0.1
