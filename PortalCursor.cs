@@ -13,8 +13,10 @@ namespace PortalCursor
 		public static PortalCursor Instance => ModContent.GetInstance<PortalCursor>();
 
 		public static readonly Asset<Texture2D> CursorTexture = RequestTexture("Portal_Cursor", AssetRequestMode.AsyncLoad);
-		public static readonly Asset<Texture2D> LeftPortalTexture = RequestTexture("Portal_Left_Half", AssetRequestMode.AsyncLoad);
-		public static readonly Asset<Texture2D> RightPortalTexture = RequestTexture("Portal_Right_Half", AssetRequestMode.AsyncLoad);
+		public static readonly Asset<Texture2D> LeftPortalFullTexture = RequestTexture("Portal_Left_Half_Full", AssetRequestMode.AsyncLoad);
+		public static readonly Asset<Texture2D> RightPortalFullTexture = RequestTexture("Portal_Right_Half_Full", AssetRequestMode.AsyncLoad);
+		public static readonly Asset<Texture2D> LeftPortalEmptyTexture = RequestTexture("Portal_Left_Half_Empty", AssetRequestMode.AsyncLoad);
+		public static readonly Asset<Texture2D> RightPortalEmptyTexture = RequestTexture("Portal_Right_Half_Empty", AssetRequestMode.AsyncLoad);
 
 		public override void Load()
 		{
