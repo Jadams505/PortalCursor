@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using ReLogic.Content;
 using Microsoft.Xna.Framework.Graphics;
 using PortalCursor.Common.Configs;
+using PortalCursor.Common.UI;
 
 namespace PortalCursor
 {
@@ -17,6 +18,15 @@ namespace PortalCursor
 		public static readonly Asset<Texture2D> RightPortalFullTexture = RequestTexture("Portal_Right_Half_Full", AssetRequestMode.AsyncLoad);
 		public static readonly Asset<Texture2D> LeftPortalEmptyTexture = RequestTexture("Portal_Left_Half_Empty", AssetRequestMode.AsyncLoad);
 		public static readonly Asset<Texture2D> RightPortalEmptyTexture = RequestTexture("Portal_Right_Half_Empty", AssetRequestMode.AsyncLoad);
+
+		public static bool IsUsingCustomCursor
+		{
+			get
+			{
+				PortalCursorConfig config = PortalCursorConfig.Instance;
+				return config.UsePortalCursor == DisplayType.Always || config.UsePortalCursor == DisplayType.OnlyWhenUsingPortals && CursorUI.IsUsingPortals;
+			}
+		}
 
 		public override void Load()
 		{
@@ -32,7 +42,7 @@ namespace PortalCursor
 
 		private void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Microsoft.Xna.Framework.Vector2 bonus, bool smart)
 		{
-			if (Main.LocalPlayer?.HeldItem?.type == ItemID.PortalGun && PortalCursorConfig.Instance.UsePortalCursor)
+			if (IsUsingCustomCursor)
 			{
 				Texture2D cursor = CursorTexture.Value;
 				Vector2 center = new Vector2(cursor.Width / 2, cursor.Height / 2);
@@ -46,7 +56,7 @@ namespace PortalCursor
 
 		private Vector2 Main_DrawThickCursor(On.Terraria.Main.orig_DrawThickCursor orig, bool smart)
 		{
-			if (Main.LocalPlayer?.HeldItem?.type == ItemID.PortalGun && PortalCursorConfig.Instance.UsePortalCursor)
+			if (IsUsingCustomCursor)
 			{
 				return Vector2.Zero;
 			}

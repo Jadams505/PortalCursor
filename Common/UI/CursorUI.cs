@@ -15,22 +15,39 @@ namespace PortalCursor.Common.UI
 		public const int LEFT_PORTAL = 0;
 		public const int RIGHT_PORTAL = 1;
 
+		public static bool CanDisplayIndicator
+		{
+			get
+			{
+				PortalCursorConfig config = PortalCursorConfig.Instance;
+				return config.UsePortalIndicator == DisplayType.Always || (IsUsingPortals && config.UsePortalIndicator == DisplayType.OnlyWhenUsingPortals);
+			}
+		}
+
+		public static bool IsUsingPortals
+		{
+			get
+			{
+				return !Main.gameMenu && !Main.InGameUI.IsVisible && !Main.ingameOptionsWindow && !Main.hideUI && !Main.mapFullscreen && Main.LocalPlayer.HeldItem.type == ItemID.PortalGun;
+			}
+		}
+
 		protected override void DrawSelf(SpriteBatch spriteBatch)
 		{
-			if (Main.LocalPlayer.HeldItem.type == ItemID.PortalGun)
+			if (CanDisplayIndicator)
 			{
-				if (PortalCursorConfig.Instance.UsePortalCursor)
+				if (PortalCursor.IsUsingCustomCursor)
 				{
-					DrawAroundCustomCursor(spriteBatch);
+					DrawIndicatorAroundCustomCursor(spriteBatch);
 				}
 				else
 				{
-					DrawAroundVanillaCursor(spriteBatch);
+					DrawIndicatorAroundVanillaCursor(spriteBatch);
 				}
 			}
 		}
 
-		private static void DrawAroundVanillaCursor(SpriteBatch spriteBatch)
+		private static void DrawIndicatorAroundVanillaCursor(SpriteBatch spriteBatch)
 		{
 			int cursorSize = 14;
 			Vector2 offset = new Vector2(PortalCursorConfig.Instance.IndicatorOffset);
@@ -49,7 +66,7 @@ namespace PortalCursor.Common.UI
 			DrawRightHalf(spriteBatch, rightPos, HasPlayerPlacedPortal(RIGHT_PORTAL));
 		}
 
-		private static void DrawAroundCustomCursor(SpriteBatch spriteBatch)
+		private static void DrawIndicatorAroundCustomCursor(SpriteBatch spriteBatch)
 		{
 			int customCursorSize = 22;
 			Vector2 offset = new Vector2(PortalCursorConfig.Instance.IndicatorOffset);

@@ -6,26 +6,30 @@ using Terraria.ModLoader.Config;
 
 namespace PortalCursor.Common.Configs
 {
+	public enum DisplayType
+	{
+		OnlyWhenUsingPortals,
+		Always,
+		Never
+	}
+
 	public class PortalCursorConfig : ModConfig
 	{
 		public static PortalCursorConfig Instance => ModContent.GetInstance<PortalCursorConfig>();
 
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
-		[DefaultValue(true)]
+		[DrawTicks]
+		[DefaultValue(DisplayType.OnlyWhenUsingPortals)]
 		[Label("Use Portal Cursor")]
-		[Tooltip("Enable this to use the custom portal crosshair")]
-		public bool UsePortalCursor;
+		[Tooltip("Enables when to use the custom portal crosshair")]
+		public DisplayType UsePortalCursor;
 
-		[DefaultValue(true)]
+		[DrawTicks]
+		[DefaultValue(DisplayType.OnlyWhenUsingPortals)]
 		[Label("Use Portal Indicator")]
-		[Tooltip("Enable this to use the portal indicators")]
-		public bool UsePortalIndicator;
-
-		[DefaultValue(true)]
-		[Label("Only Enable When Using Portals")]
-		[Tooltip("With this enabled the above setting only apply when hovering over the portal station or holding the portal gun")]
-		public bool OnlyEnableWhenUsingPortals;
+		[Tooltip("Enables when to use the portal indicators")]
+		public DisplayType UsePortalIndicator;
 
 		[DefaultValue(0)]
 		[Label("Indicator Offset")]
