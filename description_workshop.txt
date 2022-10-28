@@ -1,0 +1,19 @@
+﻿Turns your mouse into the Portal cursor when using the portal gun
+Adds indicators around the mouse that correlate to your portals in the world 
+
+[h1]Config Options[/h1]
+[list]
+[*]Use Portal Cursor: Enables when to use the custom portal crosshair
+[*]Use Portal Indicator: Enables when to use the portal indicators
+[*]Indicator Offset: How far from the center of the cursor to draw the portal indicators
+[*]Cursor Color: Changes what color to make the custom portal crosshair
+[*]Sync Cursor Color: Enable this to make the custom portal crosshair the same color as your main cursor
+[*]Invert Indicator Colors: Switches the colors of the portal indicators
+[*]Use Custom Indicator Colors: Whether or not to use your custom indicator colors
+[*]Left Indicator Color: The color to make the left portal indicator (does not change your actual portal colors)
+[*]Right Indicator Color: The color to make the right portal indicator (does not change your actual portal colors)
+[/list]
+
+[h1]Credits[/h1]
+Jadams - Developer
+Jet - Developer
