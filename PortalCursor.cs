@@ -1,11 +1,7 @@
-using Terraria.ID;
-using Terraria;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using ReLogic.Content;
 using Microsoft.Xna.Framework.Graphics;
-using PortalCursor.Common.Configs;
-using PortalCursor.Common.UI;
+using System.Diagnostics;
 
 namespace PortalCursor
 {
@@ -13,62 +9,28 @@ namespace PortalCursor
 	{
 		public static PortalCursor Instance => ModContent.GetInstance<PortalCursor>();
 
-		public static readonly Asset<Texture2D> CursorTexture = RequestTexture("Portal_Cursor", AssetRequestMode.AsyncLoad);
-		public static readonly Asset<Texture2D> LeftPortalFullTexture = RequestTexture("Portal_Left_Half_Full", AssetRequestMode.AsyncLoad);
-		public static readonly Asset<Texture2D> RightPortalFullTexture = RequestTexture("Portal_Right_Half_Full", AssetRequestMode.AsyncLoad);
-		public static readonly Asset<Texture2D> LeftPortalEmptyTexture = RequestTexture("Portal_Left_Half_Empty", AssetRequestMode.AsyncLoad);
-		public static readonly Asset<Texture2D> RightPortalEmptyTexture = RequestTexture("Portal_Right_Half_Empty", AssetRequestMode.AsyncLoad);
+		private static Asset<Texture2D> _cursorTexture;
+		public static Asset<Texture2D> CursorTexture => ModUtil.RequestTexture(ref _cursorTexture, "Portal_Cursor", AssetRequestMode.AsyncLoad);
 
-		public static bool IsUsingCustomCursor
-		{
-			get
-			{
-				PortalCursorConfig config = PortalCursorConfig.Instance;
-				return config.UsePortalCursor == DisplayType.Always || config.UsePortalCursor == DisplayType.OnlyWhenUsingPortals && CursorUI.IsUsingPortals;
-			}
-		}
+		private static Asset<Texture2D> _leftPortalFullTexture;
+		public static Asset<Texture2D> LeftPortalFullTexture => ModUtil.RequestTexture(ref _leftPortalFullTexture, "Portal_Left_Half_Full", AssetRequestMode.AsyncLoad);
 
-		public override void Load()
-		{
-			On.Terraria.Main.DrawCursor += Main_DrawCursor;
-			On.Terraria.Main.DrawThickCursor += Main_DrawThickCursor;
-		}
+		private static Asset<Texture2D> _rightPortalFullTexture;
+		public static Asset<Texture2D> RightPortalFullTexture => ModUtil.RequestTexture(ref _rightPortalFullTexture, "Portal_Right_Half_Full", AssetRequestMode.AsyncLoad);
+
+		private static Asset<Texture2D> _leftPortalEmptyTexture;
+		public static Asset<Texture2D> LeftPortalEmptyTexture => ModUtil.RequestTexture(ref _leftPortalEmptyTexture, "Portal_Left_Half_Empty", AssetRequestMode.AsyncLoad);
+		
+		private static Asset<Texture2D> _rightPortalEmptyTexture;
+		public static Asset<Texture2D> RightPortalEmptyTexture => ModUtil.RequestTexture(ref _rightPortalEmptyTexture, "Portal_Right_Half_Empty", AssetRequestMode.AsyncLoad);
 
 		public override void Unload()
 		{
-			On.Terraria.Main.DrawCursor -= Main_DrawCursor;
-			On.Terraria.Main.DrawThickCursor -= Main_DrawThickCursor;
-		}
-
-		private void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Microsoft.Xna.Framework.Vector2 bonus, bool smart)
-		{
-			if (IsUsingCustomCursor)
-			{
-				Texture2D cursor = CursorTexture.Value;
-				Vector2 center = new Vector2(cursor.Width / 2, cursor.Height / 2);
-				Main.spriteBatch.Draw(cursor, Main.MouseScreen, cursor.Frame(), Main.mouseColor, 0, center, Main.cursorScale, 0, 0);
-			}
-			else
-			{
-				orig(bonus, smart);
-			}
-		}
-
-		private Vector2 Main_DrawThickCursor(On.Terraria.Main.orig_DrawThickCursor orig, bool smart)
-		{
-			if (IsUsingCustomCursor)
-			{
-				return Vector2.Zero;
-			}
-			else
-			{
-				return orig(smart);
-			}
-		}
-
-		public static Asset<Texture2D> RequestTexture(string path, AssetRequestMode mode)
-		{
-			return ModContent.Request<Texture2D>(Instance.Name + "/Assets/" + path, mode);
+			_cursorTexture = null;
+			_leftPortalFullTexture = null;
+			_rightPortalFullTexture = null;
+			_leftPortalEmptyTexture = null;
+			_rightPortalEmptyTexture = null;
 		}
 	}
 }

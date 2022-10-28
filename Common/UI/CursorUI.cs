@@ -15,28 +15,11 @@ namespace PortalCursor.Common.UI
 		public const int LEFT_PORTAL = 0;
 		public const int RIGHT_PORTAL = 1;
 
-		public static bool CanDisplayIndicator
-		{
-			get
-			{
-				PortalCursorConfig config = PortalCursorConfig.Instance;
-				return config.UsePortalIndicator == DisplayType.Always || (IsUsingPortals && config.UsePortalIndicator == DisplayType.OnlyWhenUsingPortals);
-			}
-		}
-
-		public static bool IsUsingPortals
-		{
-			get
-			{
-				return !Main.gameMenu && !Main.InGameUI.IsVisible && !Main.ingameOptionsWindow && !Main.hideUI && !Main.mapFullscreen && Main.LocalPlayer.HeldItem.type == ItemID.PortalGun;
-			}
-		}
-
 		protected override void DrawSelf(SpriteBatch spriteBatch)
 		{
-			if (CanDisplayIndicator)
+			if (ModUtil.CanDisplayIndicator())
 			{
-				if (PortalCursor.IsUsingCustomCursor)
+				if (ModUtil.IsUsingCustomCursor())
 				{
 					DrawIndicatorAroundCustomCursor(spriteBatch);
 				}
