@@ -9,16 +9,22 @@ namespace PortalCursor.Common.Configs
 {
 	public enum DisplayType
 	{
+		[Label("Only When Using Portals")]
 		OnlyWhenUsingPortals,
+		[Label("Always")]
 		Always,
+		[Label("Never")]
 		Never
 	}
 
+	[Label("Portal Cursor Config")]
 	public class PortalCursorConfig : ModConfig
 	{
 		public static PortalCursorConfig Instance => ModContent.GetInstance<PortalCursorConfig>();
 
 		public override ConfigScope Mode => ConfigScope.ClientSide;
+
+		[Header("Main Settings")]
 
 		[DrawTicks]
 		[DefaultValue(DisplayType.OnlyWhenUsingPortals)]
@@ -35,7 +41,7 @@ namespace PortalCursor.Common.Configs
 		[DefaultValue(0)]
 		[Range(-99, 99)]
 		[Label("Indicator Offset")]
-		[Tooltip("How far from the center of the cursor to draw the portal indicator")]
+		[Tooltip("How far from the center of the cursor to draw the portal indicators")]
 		public int IndicatorOffset;
 
 		[Header("Color Settings")]
@@ -57,16 +63,16 @@ namespace PortalCursor.Common.Configs
 
 		[DefaultValue(false)]
 		[Label("Use Custom Indicator Colors")]
-		[Tooltip("Whether or not to use the colors specified in the config")]
+		[Tooltip("Whether or not to use your custom indicator colors")]
 		public bool UseCustomIndicatorColors;
 
 		[Label("Left Indicator Color")]
-		[Tooltip("The color to make the left portal indicator")]
+		[Tooltip("The color to make the left portal indicator (does not change your actual portal colors)")]
 		[SeparatePage]
 		public ColorWrapper LeftIndicatorColor = new ColorWrapper(Color.White);
 
 		[Label("Right Indicator Color")]
-		[Tooltip("The color to make the right portal indicator")]
+		[Tooltip("The color to make the right portal indicator (does not change your actual portal colors)")]
 		[SeparatePage]
 		public ColorWrapper RightIndicatorColor = new ColorWrapper(Color.White);
 

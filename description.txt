@@ -1,1 +1,17 @@
-Portal Cursor is a pretty cool mod, it does...this. Modify this file with a description of your mod.
+Turns your mouse into the Portal cursor when using the portal gun
+Adds indicators around the mouse that correlate to your portals in the world 
+
+[Config Options]
+- [c/FFFF00:Use Portal Cursor]: Enables when to use the custom portal crosshair
+- [c/FFFF00:Use Portal Indicator]: Enables when to use the portal indicators
+- [c/FFFF00:Indicator Offset]: How far from the center of the cursor to draw the portal indicators
+- [c/FFFF00:Cursor Color]: Changes what color to make the custom portal crosshair
+- [c/FFFF00:Sync Cursor Color]: Enable this to make the custom portal crosshair the same color as your main cursor
+- [c/FFFF00:Invert Indicator Colors]: Switches the colors of the portal indicators
+- [c/FFFF00:Use Custom Indicator Colors]: Whether or not to use your custom indicator colors
+- [c/FFFF00:Left Indicator Color]: The color to make the left portal indicator (does not change your actual portal colors)
+- [c/FFFF00:Right Indicator Color]: The color to make the right portal indicator (does not change your actual portal colors)
+
+[Credits]
+Jadams - Developer
+Jet - Developer
