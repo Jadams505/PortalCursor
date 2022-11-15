@@ -1,7 +1,6 @@
 using Terraria.ModLoader;
 using ReLogic.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 
 namespace PortalCursor
 {

@@ -39,6 +39,13 @@ namespace PortalCursor
 			return tile.TileType == TileID.Cannon && tile.TileFrameX >= 216;
 		}
 
+		public static bool IsCursorBeingDrawn()
+		{
+			return !((Main.gameMenu && Main.alreadyGrabbingSunOrMoon) 
+				|| (PlayerInput.SettingsForUI.ShowGamepadCursor && ((Main.LocalPlayer.dead && !Main.LocalPlayer.ghost && !Main.gameMenu)
+				|| PlayerInput.InvisibleGamepadInMenus)));
+		}
+
 		public static Point GetMousePos()
 		{
 			int targetX = Player.tileTargetX;

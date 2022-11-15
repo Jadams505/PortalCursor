@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Reflection.Emit;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
+using System;
 
 namespace PortalCursor.Common.Configs
 {
@@ -38,11 +39,15 @@ namespace PortalCursor.Common.Configs
 		[Tooltip("Enables when to use the portal indicators")]
 		public DisplayType UsePortalIndicator;
 
-		[DefaultValue(0)]
-		[Range(-99, 99)]
-		[Label("Indicator Offset")]
-		[Tooltip("How far from the center of the cursor to draw the portal indicators")]
-		public int IndicatorOffset;
+		[Label("Left Indicator Offset")]
+		[Tooltip("How far from the center of the cursor to draw the left portal indicator")]
+		[SeparatePage]
+		public Point LeftIndicatorOffset = new Point(-3, -8);
+
+		[Label("Right Indicator Offset")]
+		[Tooltip("How far from the center of the cursor to draw the right portal indicator")]
+		[SeparatePage]
+		public Point RightIndicatorOffset = new Point(8, 6);
 
 		[Header("Color Settings")]
 
@@ -108,6 +113,40 @@ namespace PortalCursor.Common.Configs
 			public override int GetHashCode()
 			{
 				return Color.GetHashCode();
+			}
+		}
+
+		public class Point
+		{
+			[Range(-999, 999)]
+			public int X;
+			[Range(-999, 999)]
+			public int Y;
+
+			public Point()
+			{
+				X = 0;
+				Y = 0;
+			}
+
+			public Point(int x, int y)
+			{
+				X = x;
+				Y = y;
+			}
+
+			public override bool Equals(object obj)
+			{
+				if(obj is Point point)
+				{
+					return X == point.X && Y == point.Y;
+				}
+				return base.Equals(obj);
+			}
+
+			public override int GetHashCode()
+			{
+				return HashCode.Combine(X, Y);
 			}
 		}
 

@@ -29,13 +29,17 @@ namespace PortalCursor.Common.Systems
 
 		private void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Vector2 bonus, bool smart)
 		{
-			Draw(Main.spriteBatch);
-			if (ModUtil.IsUsingCustomCursor())
+			if (ModUtil.IsCursorBeingDrawn())
 			{
-				Texture2D cursor = PortalCursor.CursorTexture.Value;
-				Vector2 center = new Vector2(cursor.Width / 2, cursor.Height / 2);
-				Main.spriteBatch.Draw(cursor, Main.MouseScreen, cursor.Frame(), PortalCursorConfig.Instance.CursorColor.Color, 0, center, Main.cursorScale, 0, 0);
-				return;
+				if (ModUtil.CanDisplayIndicator())
+				{
+					DrawIndicators(Main.spriteBatch);
+				}
+				if (ModUtil.IsUsingCustomCursor())
+				{
+					DrawPortalCursor();
+					return;
+				}
 			}
 			orig(bonus, smart);
 		}
@@ -49,7 +53,14 @@ namespace PortalCursor.Common.Systems
 			return orig(smart);
 		}
 
-		private static void Draw(SpriteBatch spriteBatch)
+		private static void DrawPortalCursor()
+		{
+			Texture2D cursor = PortalCursor.CursorTexture.Value;
+			Vector2 center = new Vector2(cursor.Width / 2, cursor.Height / 2);
+			Main.spriteBatch.Draw(cursor, Main.MouseScreen, cursor.Frame(), PortalCursorConfig.Instance.CursorColor.Color, 0, center, Main.cursorScale, 0, 0);
+		}
+
+		private static void DrawIndicators(SpriteBatch spriteBatch)
 		{
 			if (ModUtil.CanDisplayIndicator())
 			{
@@ -67,40 +78,28 @@ namespace PortalCursor.Common.Systems
 		private static void DrawIndicatorAroundVanillaCursor(SpriteBatch spriteBatch)
 		{
 			int cursorSize = 14;
-			Vector2 offset = new Vector2(PortalCursorConfig.Instance.IndicatorOffset);
+			PortalCursorConfig config = PortalCursorConfig.Instance;
 			Vector2 cursorCenter = ModUtil.GetScaledCursorCenter(cursorSize);
 
-			Vector2 leftCenterOffset = new Vector2(-3, -8);
-			Vector2 leftPos = cursorCenter;
-			leftPos += leftCenterOffset;
-			leftPos -= offset;
-			DrawLeftHalf(spriteBatch, leftPos, ModUtil.HasPlayerPlacedPortal(LEFT_PORTAL));
+			Vector2 leftCenterOffset = new Vector2(config.LeftIndicatorOffset.X, config.LeftIndicatorOffset.Y);
+			DrawLeftHalf(spriteBatch, cursorCenter + leftCenterOffset, ModUtil.HasPlayerPlacedPortal(LEFT_PORTAL));
 
-			Vector2 rightCenterOffset = new Vector2(8, 6);
-			Vector2 rightPos = cursorCenter;
-			rightPos += rightCenterOffset;
-			rightPos += offset;
-			DrawRightHalf(spriteBatch, rightPos, ModUtil.HasPlayerPlacedPortal(RIGHT_PORTAL));
+			Vector2 rightCenterOffset = new Vector2(config.RightIndicatorOffset.X, config.RightIndicatorOffset.Y);
+			DrawRightHalf(spriteBatch, cursorCenter + rightCenterOffset, ModUtil.HasPlayerPlacedPortal(RIGHT_PORTAL));
 		}
 
 		private static void DrawIndicatorAroundCustomCursor(SpriteBatch spriteBatch)
 		{
 			int customCursorSize = 22;
-			Vector2 offset = new Vector2(PortalCursorConfig.Instance.IndicatorOffset);
+			int magicOffset = -3;
+			PortalCursorConfig config = PortalCursorConfig.Instance;
 			Vector2 cursorCenter = ModUtil.GetScaledCursorCenter(customCursorSize);
 
-			Vector2 leftCenterOffset = new Vector2(-6, -11);
-			Vector2 leftPos = cursorCenter;
-			leftPos += leftCenterOffset;
-			leftPos -= offset;
-			DrawLeftHalf(spriteBatch, leftPos, ModUtil.HasPlayerPlacedPortal(LEFT_PORTAL));
+			Vector2 leftCenterOffset = new Vector2(config.LeftIndicatorOffset.X + magicOffset, config.LeftIndicatorOffset.Y + magicOffset);
+			DrawLeftHalf(spriteBatch, cursorCenter + leftCenterOffset, ModUtil.HasPlayerPlacedPortal(LEFT_PORTAL));
 
-
-			Vector2 rightCenterOffset = new Vector2(5, 3);
-			Vector2 rightPos = cursorCenter;
-			rightPos += rightCenterOffset;
-			rightPos += offset;
-			DrawRightHalf(spriteBatch, rightPos, ModUtil.HasPlayerPlacedPortal(RIGHT_PORTAL));
+			Vector2 rightCenterOffset = new Vector2(config.RightIndicatorOffset.X + magicOffset, config.RightIndicatorOffset.Y + magicOffset);
+			DrawRightHalf(spriteBatch, cursorCenter + rightCenterOffset, ModUtil.HasPlayerPlacedPortal(RIGHT_PORTAL));
 		}
 
 		private static void DrawLeftHalf(SpriteBatch spriteBatch, Vector2 pos, bool full)
