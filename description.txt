@@ -4,7 +4,8 @@ Adds indicators around the mouse that correlate to your portals in the world
 [Config Options]
 - [c/FFFF00:Use Portal Cursor]: Enables when to use the custom portal crosshair
 - [c/FFFF00:Use Portal Indicator]: Enables when to use the portal indicators
-- [c/FFFF00:Indicator Offset]: How far from the center of the cursor to draw the portal indicators
+- [c/FFFF00:Left Indicator Offset]: How far from the center of the cursor to draw the left portal indicator
+- [c/FFFF00:Right Indicator Offset]: How far from the center of the cursor to draw the right portal indicator
 - [c/FFFF00:Cursor Color]: Changes what color to make the custom portal crosshair
 - [c/FFFF00:Sync Cursor Color]: Enable this to make the custom portal crosshair the same color as your main cursor
 - [c/FFFF00:Invert Indicator Colors]: Switches the colors of the portal indicators
