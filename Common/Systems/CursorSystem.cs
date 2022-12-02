@@ -17,17 +17,20 @@ namespace PortalCursor.Common.Systems
 
 		public override void Load()
 		{
-			On.Terraria.Main.DrawCursor += Main_DrawCursor;
-			On.Terraria.Main.DrawThickCursor += Main_DrawThickCursor;
+			On_Main.DrawCursor += On_Main_DrawCursor;
+			On_Main.DrawThickCursor += On_Main_DrawThickCursor;
 		}
 
-		public override void Unload()
+		private Vector2 On_Main_DrawThickCursor(On_Main.orig_DrawThickCursor orig, bool smart)
 		{
-			On.Terraria.Main.DrawCursor -= Main_DrawCursor;
-			On.Terraria.Main.DrawThickCursor -= Main_DrawThickCursor;
+			if (ModUtil.IsUsingCustomCursor())
+			{
+				return Vector2.Zero;
+			}
+			return orig(smart);
 		}
 
-		private void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Vector2 bonus, bool smart)
+		private void On_Main_DrawCursor(On_Main.orig_DrawCursor orig, Vector2 bonus, bool smart)
 		{
 			if (ModUtil.IsCursorBeingDrawn())
 			{
@@ -44,13 +47,10 @@ namespace PortalCursor.Common.Systems
 			orig(bonus, smart);
 		}
 
-		private Vector2 Main_DrawThickCursor(On.Terraria.Main.orig_DrawThickCursor orig, bool smart)
+		public override void Unload()
 		{
-			if (ModUtil.IsUsingCustomCursor())
-			{
-				return Vector2.Zero;
-			}
-			return orig(smart);
+			On_Main.DrawCursor -= On_Main_DrawCursor;
+			On_Main.DrawThickCursor -= On_Main_DrawThickCursor;
 		}
 
 		private static void DrawPortalCursor()
