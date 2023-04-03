@@ -10,80 +10,80 @@ namespace PortalCursor.Common.Configs
 {
 	public enum DisplayType
 	{
-		[Label("Only When Using Portals")]
+		[Label("$Mods.PortalCursor.Enums.OnlyWhenUsingPortals")]
 		OnlyWhenUsingPortals,
-		[Label("Always")]
+		[Label("$Mods.PortalCursor.Enums.Always")]
 		Always,
-		[Label("Never")]
+		[Label("$Mods.PortalCursor.Enums.Never")]
 		Never
 	}
 
-	[Label("Portal Cursor Config")]
+	[Label("$Mods.PortalCursor.PortalCursorConfig")]
 	public class PortalCursorConfig : ModConfig
 	{
 		public static PortalCursorConfig Instance => ModContent.GetInstance<PortalCursorConfig>();
 
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
-		[Header("Main Settings")]
+		[Header("$Mods.PortalCursor.MainSettings")]
 
 		[DrawTicks]
 		[DefaultValue(DisplayType.OnlyWhenUsingPortals)]
-		[Label("Use Portal Cursor")]
-		[Tooltip("Enables when to use the custom portal crosshair")]
+		[Label("$Mods.PortalCursor.UsePortalCursor.Label")]
+		[Tooltip("$Mods.PortalCursor.UsePortalCursor.Tooltip")]
 		public DisplayType UsePortalCursor;
 
 		[DrawTicks]
 		[DefaultValue(DisplayType.OnlyWhenUsingPortals)]
-		[Label("Use Portal Indicator")]
-		[Tooltip("Enables when to use the portal indicators")]
+		[Label("$Mods.PortalCursor.UsePortalIndicator.Label")]
+		[Tooltip("$Mods.PortalCursor.UsePortalIndicator.Tooltip")]
 		public DisplayType UsePortalIndicator;
 
-		[Label("Left Indicator Offset")]
-		[Tooltip("How far from the center of the cursor to draw the left portal indicator")]
+		[Label("$Mods.PortalCursor.LeftIndicatorOffset.Label")]
+		[Tooltip("$Mods.PortalCursor.LeftIndicatorOffset.Tooltip")]
 		[SeparatePage]
 		public Point LeftIndicatorOffset = new Point(-3, -8);
 
-		[Label("Right Indicator Offset")]
-		[Tooltip("How far from the center of the cursor to draw the right portal indicator")]
+		[Label("$Mods.PortalCursor.RightIndicatorOffset.Label")]
+		[Tooltip("$Mods.PortalCursor.RightIndicatorOffset.Tooltip")]
 		[SeparatePage]
 		public Point RightIndicatorOffset = new Point(8, 6);
 
-		[Header("Color Settings")]
+		[Header("$Mods.PortalCursor.ColorSettings")]
 
-		[Label("Cursor Color")]
-		[Tooltip("Changes what color to make the custom portal crosshair")]
+		[Label("$Mods.PortalCursor.CursorColor.Label")]
+		[Tooltip("$Mods.PortalCursor.CursorColor.Tooltip")]
 		[SeparatePage]
 		public ColorWrapper CursorColor = new ColorWrapper(Main.mouseColor);
 
 		[DefaultValue(true)]
-		[Label("Sync Cursor Color")]
-		[Tooltip("Enable this to make the custom portal crosshair the same color as your main cursor")]
+		[Label("$Mods.PortalCursor.SyncCursorColor.Label")]
+		[Tooltip("$Mods.PortalCursor.SyncCursorColor.Tooltip")]
 		public bool SyncCursorColor;
 
 		[DefaultValue(false)]
-		[Label("Invert Indicator Colors")]
-		[Tooltip("Switches the colors of the portal indicators")]
+		[Label("$Mods.PortalCursor.InvertIndicatorColors.Label")]
+		[Tooltip("$Mods.PortalCursor.InvertIndicatorColors.Tooltip")]
 		public bool InvertIndicatorColors;
 
 		[DefaultValue(false)]
-		[Label("Use Custom Indicator Colors")]
-		[Tooltip("Whether or not to use your custom indicator colors")]
+		[Label("$Mods.PortalCursor.UseCustomIndicatorColors.Label")]
+		[Tooltip("$Mods.PortalCursor.UseCustomIndicatorColors.Tooltip")]
 		public bool UseCustomIndicatorColors;
 
-		[Label("Left Indicator Color")]
-		[Tooltip("The color to make the left portal indicator (does not change your actual portal colors)")]
+		[Label("$Mods.PortalCursor.LeftIndicatorColor.Label")]
+		[Tooltip("$Mods.PortalCursor.LeftIndicatorColor.Tooltip")]
 		[SeparatePage]
 		public ColorWrapper LeftIndicatorColor = new ColorWrapper(Color.White);
 
-		[Label("Right Indicator Color")]
-		[Tooltip("The color to make the right portal indicator (does not change your actual portal colors)")]
+		[Label("$Mods.PortalCursor.RightIndicatorColor.Label")]
+		[Tooltip("$Mods.PortalCursor.RightIndicatorColor.Tooltip")]
 		[SeparatePage]
 		public ColorWrapper RightIndicatorColor = new ColorWrapper(Color.White);
 
 		public class ColorWrapper
 		{
-			[Label("Color")]
+			[Label("$Mods.PortalCursor.Color")]
 			public Color Color;
 
 			public ColorWrapper(byte r, byte g, byte b, byte a)
@@ -119,8 +119,10 @@ namespace PortalCursor.Common.Configs
 		public class Point
 		{
 			[Range(-999, 999)]
+			[Label("$Mods.PortalCursor.X.Label")]
 			public int X;
 			[Range(-999, 999)]
+			[Label("$Mods.PortalCursor.Y.Label")]
 			public int Y;
 
 			public Point()

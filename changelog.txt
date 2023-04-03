@@ -1,3 +1,2 @@
 ﻿
-- Split Indicator Offset into Left Indicator Offset and Right Indicator Offset
-- Fixed an issue with the cursor not disappearing when moving the sun/moon in the main menu
+- Updated to 1.4.4

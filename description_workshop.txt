@@ -1,6 +1,8 @@
 ﻿Turns your mouse into the Portal cursor when using the portal gun
 Adds indicators around the mouse that correlate to your portals in the world 
 
+Github: https://github.com/Jadams505/PortalCursor
+
 [h1]Config Options[/h1]
 [list]
 [*]Use Portal Cursor: Enables when to use the custom portal crosshair
