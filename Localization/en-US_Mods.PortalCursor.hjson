@@ -1,65 +1,90 @@
+Configs: {
+	PortalCursorConfig: {
+		DisplayName: Portal Cursor Config
 
-Enums: {
-	OnlyWhenUsingPortals: Only When Using Portals
-	Always: Always
-	Never: Never
+		UsePortalCursor: {
+			Label: Use Portal Cursor
+			Tooltip: Enables when to use the custom portal crosshair
+		}
+
+		UsePortalIndicator: {
+			Label: Use Portal Indicator
+			Tooltip: Enables when to use the portal indicators
+		}
+
+		LeftIndicatorOffset: {
+			Label: Left Indicator Offset
+			Tooltip: How far from the center of the cursor to draw the left portal indicator
+		}
+
+		RightIndicatorOffset: {
+			Label: Right Indicator Offset
+			Tooltip: How far from the center of the cursor to draw the right portal indicator
+		}
+
+		CursorColor: {
+			Label: Cursor Color
+			Tooltip: Changes what color to make the custom portal crosshair
+		}
+
+		SyncCursorColor: {
+			Label: Sync Cursor Color
+			Tooltip: Enable this to make the custom portal crosshair the same color as your main cursor
+		}
+
+		InvertIndicatorColors: {
+			Label: Invert Indicator Colors
+			Tooltip: Switches the colors of the portal indicators
+		}
+
+		UseCustomIndicatorColors: {
+			Label: Use Custom Indicator Colors
+			Tooltip: Whether or not to use your custom indicator colors
+		}
+
+		LeftIndicatorColor: {
+			Label: Left Indicator Color
+			Tooltip: The color to make the left portal indicator (does not change your actual portal colors)
+		}
+
+		RightIndicatorColor: {
+			Label: Right Indicator Color
+			Tooltip: The color to make the right portal indicator (does not change your actual portal colors)
+		}
+
+		Headers: {
+			MainSettings: Main Settings
+			ColorSettings: Color Settings
+		}
+	}
+
+	DisplayType: {
+		Tooltip: ""
+		OnlyWhenUsingPortals.Label: Only When Using Portals
+		Always.Label: Always
+		Never.Label: Never
+	}
+
+	Point: {
+		Tooltip: ""
+
+		X: {
+			Label: X
+			Tooltip: ""
+		}
+
+		Y: {
+			Label: Y
+			Tooltip: ""
+		}
+	}
+
+	ColorWrapper: {
+		Tooltip: ""
+
+		Color: {
+			Label: Color
+			Tooltip: ""
+		}
+	}
 }
-
-PortalCursorConfig: Portal Cursor Config
-MainSettings: Main Settings
-
-UsePortalCursor: {
-	Label: Use Portal Cursor
-	Tooltip: Enables when to use the custom portal crosshair
-}
-
-UsePortalIndicator: {
-	Label: Use Portal Indicator
-	Tooltip: Enables when to use the portal indicators
-}
-
-LeftIndicatorOffset: {
-	Label: Left Indicator Offset
-	Tooltip: How far from the center of the cursor to draw the left portal indicator
-}
-
-RightIndicatorOffset: {
-	Label: Right Indicator Offset
-	Tooltip: How far from the center of the cursor to draw the right portal indicator
-}
-
-ColorSettings: Color Settings
-
-CursorColor: {
-	Label: Cursor Color
-	Tooltip: Changes what color to make the custom portal crosshair
-}
-
-SyncCursorColor: {
-	Label: Sync Cursor Color
-	Tooltip: Enable this to make the custom portal crosshair the same color as your main cursor
-}
-
-InvertIndicatorColors: {
-	Label: Invert Indicator Colors
-	Tooltip: Switches the colors of the portal indicators
-}
-
-UseCustomIndicatorColors: {
-	Label: Use Custom Indicator Colors
-	Tooltip: Whether or not to use your custom indicator colors
-}
-
-LeftIndicatorColor: {
-	Label: Left Indicator Color
-	Tooltip: The color to make the left portal indicator (does not change your actual portal colors)
-}
-
-RightIndicatorColor: {
-	Label: Right Indicator Color
-	Tooltip: The color to make the right portal indicator (does not change your actual portal colors)
-}
-
-Color: Color
-X.Label: X
-Y.Label: Y

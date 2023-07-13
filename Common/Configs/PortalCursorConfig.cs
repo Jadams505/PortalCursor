@@ -10,80 +10,55 @@ namespace PortalCursor.Common.Configs
 {
 	public enum DisplayType
 	{
-		[Label("$Mods.PortalCursor.Enums.OnlyWhenUsingPortals")]
 		OnlyWhenUsingPortals,
-		[Label("$Mods.PortalCursor.Enums.Always")]
 		Always,
-		[Label("$Mods.PortalCursor.Enums.Never")]
 		Never
 	}
 
-	[Label("$Mods.PortalCursor.PortalCursorConfig")]
 	public class PortalCursorConfig : ModConfig
 	{
 		public static PortalCursorConfig Instance => ModContent.GetInstance<PortalCursorConfig>();
 
 		public override ConfigScope Mode => ConfigScope.ClientSide;
 
-		[Header("$Mods.PortalCursor.MainSettings")]
+		[Header("MainSettings")]
 
 		[DrawTicks]
 		[DefaultValue(DisplayType.OnlyWhenUsingPortals)]
-		[Label("$Mods.PortalCursor.UsePortalCursor.Label")]
-		[Tooltip("$Mods.PortalCursor.UsePortalCursor.Tooltip")]
 		public DisplayType UsePortalCursor;
 
 		[DrawTicks]
 		[DefaultValue(DisplayType.OnlyWhenUsingPortals)]
-		[Label("$Mods.PortalCursor.UsePortalIndicator.Label")]
-		[Tooltip("$Mods.PortalCursor.UsePortalIndicator.Tooltip")]
 		public DisplayType UsePortalIndicator;
 
-		[Label("$Mods.PortalCursor.LeftIndicatorOffset.Label")]
-		[Tooltip("$Mods.PortalCursor.LeftIndicatorOffset.Tooltip")]
 		[SeparatePage]
 		public Point LeftIndicatorOffset = new Point(-3, -8);
 
-		[Label("$Mods.PortalCursor.RightIndicatorOffset.Label")]
-		[Tooltip("$Mods.PortalCursor.RightIndicatorOffset.Tooltip")]
 		[SeparatePage]
 		public Point RightIndicatorOffset = new Point(8, 6);
 
-		[Header("$Mods.PortalCursor.ColorSettings")]
+		[Header("ColorSettings")]
 
-		[Label("$Mods.PortalCursor.CursorColor.Label")]
-		[Tooltip("$Mods.PortalCursor.CursorColor.Tooltip")]
 		[SeparatePage]
 		public ColorWrapper CursorColor = new ColorWrapper(Main.mouseColor);
 
 		[DefaultValue(true)]
-		[Label("$Mods.PortalCursor.SyncCursorColor.Label")]
-		[Tooltip("$Mods.PortalCursor.SyncCursorColor.Tooltip")]
 		public bool SyncCursorColor;
 
 		[DefaultValue(false)]
-		[Label("$Mods.PortalCursor.InvertIndicatorColors.Label")]
-		[Tooltip("$Mods.PortalCursor.InvertIndicatorColors.Tooltip")]
 		public bool InvertIndicatorColors;
 
 		[DefaultValue(false)]
-		[Label("$Mods.PortalCursor.UseCustomIndicatorColors.Label")]
-		[Tooltip("$Mods.PortalCursor.UseCustomIndicatorColors.Tooltip")]
 		public bool UseCustomIndicatorColors;
 
-		[Label("$Mods.PortalCursor.LeftIndicatorColor.Label")]
-		[Tooltip("$Mods.PortalCursor.LeftIndicatorColor.Tooltip")]
 		[SeparatePage]
 		public ColorWrapper LeftIndicatorColor = new ColorWrapper(Color.White);
 
-		[Label("$Mods.PortalCursor.RightIndicatorColor.Label")]
-		[Tooltip("$Mods.PortalCursor.RightIndicatorColor.Tooltip")]
 		[SeparatePage]
 		public ColorWrapper RightIndicatorColor = new ColorWrapper(Color.White);
 
 		public class ColorWrapper
 		{
-			[Label("$Mods.PortalCursor.Color")]
 			public Color Color;
 
 			public ColorWrapper(byte r, byte g, byte b, byte a)
@@ -119,10 +94,8 @@ namespace PortalCursor.Common.Configs
 		public class Point
 		{
 			[Range(-999, 999)]
-			[Label("$Mods.PortalCursor.X.Label")]
 			public int X;
 			[Range(-999, 999)]
-			[Label("$Mods.PortalCursor.Y.Label")]
 			public int Y;
 
 			public Point()
